@@ -1,0 +1,26 @@
+import re
+
+# Define patterns and responses
+patterns_responses = {
+    r'hi|hello|hey': ['Hello!', 'Hey there!', 'Hi!'],
+    r'how are you?': ['I am doing well, thank you!', 'I\'m fine, thanks!'],
+    r'what is your name?': ['You can call me ChatBot.', 'I am ChatBot.'],
+    r'what time is it?': ['I do not have a clock, sorry.', 'You can check the time on your device.'],
+    r'quit': ['Bye! Take care.', 'Goodbye!']
+}
+
+# Function to generate a response
+def generate_response(user_input):
+    for pattern, responses in patterns_responses.items():
+        if re.search(pattern, user_input, re.IGNORECASE):
+            return random.choice(responses)
+    return "I'm sorry, I don't understand that."
+
+# Start conversation
+print("Welcome to the chatbot. Type 'quit' to exit.")
+while True:
+    user_input = input('You: ')
+    response = generate_response(user_input)
+    print('Bot:', response)
+    if user_input.lower() == 'quit':
+        break
